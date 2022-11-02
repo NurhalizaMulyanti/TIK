@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>FKIP</title>
+    <style>
+        body{
+            background-color: #C6EBC5;
+        }
+    
+        img{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 40%;
+        }
+    
+        h1{
+            color: black;
+            text-align: center;
+            font-family: lucida ;
+            font-size: 30px;
+        }
+    
+        h2{
+            background-color: #A1C298;
+            color: black;
+            text-align: center;
+            font-family: lucida;
+            font-size: 25px;
+        }
+    
+        p{
+            color: black;
+            text-align: justify;
+            font-family: times;
+            font-size: 20px;
+        }
+</style>
+</head>
+<body>
+    <center>
+    <h1>FAKULTAS KEGURUAN DAN ILMU PENDIDIKAN</h1>
+    </center>
+    <img src= "https://assets.pikiran-rakyat.com/crop/0x0:0x0/x/photo/2021/11/22/2749249677.jpg" alt="25%">
+    <h2>Jurusan yang terdapat dalam Fakultas Keguruan dan Ilmu Pendidikan, terdiri dari:</h2>
+    <p>1. Pendidikan Matematika</p>
+    <p>2. Pendidikan Fisika</p>
+    <p>3. Pendidikan Kimia</p>
+    <p>4. Pendidikan Biologi</p>
+    <p>5. Pendidikan Non Formal</p>
+    <p>6. Pendidikan Khusus</p>
+    <p>7. Pendidikan Bahasa Indonesia</p>
+    <p>8. Pendidikan Bahasa Inggris</p>
+    <p>9. Pendidikan Bimbingan dan Konseling</p>
+    <p>10. Pendidikan Vokasi Teknik Mesin</p>
+    <p>11. Pendidikan Vokasi Teknik Elektro</p>
+    <p>12. Pendidikan Guru Sekolah Dasar</p>
+    <p>13. Pendidikan Guru Pendidikan Anak Usia Dini</p>
+    <p>14. Pendidikan Ilmu Pengetahuan Alam</p>
+    <p>15. Pendidikan Sosiologi</p>
+    <p>16. Pendidikan Sejarah</p>
+    <p>17. Pendidikan Pancasila dan Kewarganegaraan</p>
+    <p>18. Pendidikan Seni Pertunjukan</p>
+</body>
+</html> 
+
+<div class="container">
+    <div class="row">
+        <div class="col=md-12">
+            <h3>
+                FKIP
+                <a herf="{% url 'tambah_fkip' %}">Tambah</a>
+            </h3>
+            {% for message in messages %}
+            {% if message %}
+            <div class="alert alert-success">{{ messagae }}</div>
+            {% endif %}
+            {% endfor%}
+
+            <table class="table table-border table-striped">
+                <thead>
+                    <tr>
+                        <th>JUDUL</th>
+                        <th>JURUSAN</th>
+                        <th>KETUA JURUSAN</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+            <tbody>
+                {% for fkip in books %}
+                <tr>
+                    <td><a href=" {% url 'ubah_fkip' fh.id %}">{{ fkip.judul }}</a></td>
+                    <td>{{ fkip.judul }}</td>
+                    <td>{{ fkip.jurusan }}</td>
+                    <td>{{ fkip.ketua jurusan }}</td>
+                    <td>
+                        <button data-toggle="modal" data-target="#hapus-{{ fkip.id }}" class="btn btn-danger">Hapus</button>
+                    </td>
+
+                <div class="modal" id="hapus-{{ fkip.id }}">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="modal-title">
+                                    <h3>Hapus</h3>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                Apakah anda yakin ingin menghapus data tersebut? <strong>{{ fkip.judul | upper }}</strong>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{% url 'hapus_fkip' fkip.id %}" class="btn btn-danger">Hapus</a>
+                                <button class="btn btn-dark" data- dismiss="modal">Tidak</button>
+                            </div>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+</tr>
+{% endfor %}
+
+{% endlock %}

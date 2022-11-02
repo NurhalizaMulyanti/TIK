@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>FEB</title>
+    <style>
+        body{
+            background-color: #9ED2C6;
+        }
+    
+        img{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 40%;
+        }
+    
+        h1{
+            color: black;
+            text-align: center;
+            font-family: lucida ;
+            font-size: 30px;
+        }
+    
+        h2{
+            background-color: #54BAB9;
+            color: black;
+            text-align: center;
+            font-family: lucida;
+            font-size: 25px;
+        }
+    
+        p{
+            color: black;
+            text-align: justify;
+            font-family: times;
+            font-size: 20px;
+        }
+</style>
+</head>
+<body>
+    <center>
+    <h1>FAKULTAS EKONOMI DAN BISNIS</h1>
+    </center>
+    <img src= "https://4.bp.blogspot.com/-0txpolfYAiY/V9ixhFA7kzI/AAAAAAAAAw4/ThxiBXrObQEXO5TnPai6iZUjA3ft_1IAACLcB/s1600/Logo%2BFakultas%2BEkonomi%2Bdan%2BBisnis%2BUntirta%2BWarna.jpg" alt="35%">
+    <h2>Jurusan yang terdapat dalam Fakultas Ekonomi dan Bisnis, terdiri dari:</h2>
+    <p>1. Manajemen</p>
+    <p>2. Ekonomi Syariah</p>
+    <p>3. Akuntansi</p>
+</body>
+</html> 
+
+<div class="container">
+    <div class="row">
+        <div class="col=md-12">
+            <h3>
+                FEB
+                <a herf="{% url 'tambah_feb' %}">Tambah</a>
+            </h3>
+            {% for message in messages %}
+            {% if message %}
+            <div class="alert alert-success">{{ messagae }}</div>
+            {% endif %}
+            {% endfor%}
+
+            <table class="table table-border table-striped">
+                <thead>
+                    <tr>
+                        <th>JUDUL</th>
+                        <th>JURUSAN</th>
+                        <th>KETUA JURUSAN</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+            <tbody>
+                {% for feb in books %}
+                <tr>
+                    <td><a href=" {% url 'ubah_feb' feb.id %}">{{ feb.judul }}</a></td>
+                    <td>{{ feb.judul }}</td>
+                    <td>{{ feb.jurusan }}</td>
+                    <td>{{ feb.ketua jurusan }}</td>
+                    <td>
+                        <button data-toggle="modal" data-target="#hapus-{{ feb.id }}" class="btn btn-danger">Hapus</button>
+                    </td>
+
+                <div class="modal" id="hapus-{{ feb.id }}">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="modal-title">
+                                    <h3>Hapus</h3>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                Apakah anda yakin ingin menghapus data tersebut? <strong>{{ feb.judul | upper }}</strong>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{% url 'hapus_feb' feb.id %}" class="btn btn-danger">Hapus</a>
+                                <button class="btn btn-dark" data- dismiss="modal">Tidak</button>
+                            </div>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+</tr>
+{% endfor %}
+
+{% endlock %}

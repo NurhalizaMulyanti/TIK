@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>FT</title>
+    <style>
+        body{
+            background-color: #B1E1FF;
+        }
+    
+        img{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 40%;
+        }
+    
+        h1{
+            color: black;
+            text-align: center;
+            font-family: lucida ;
+            font-size: 30px;
+        }
+    
+        h2{
+            background-color: #607EAA;
+            color: black;
+            text-align: center;
+            font-family: lucida;
+            font-size: 25px;
+        }
+    
+        p{
+            color: black;
+            text-align: justify;
+            font-family: times;
+            font-size: 20px;
+        }
+</style>
+</head>
+<body>
+    <center>
+    <h1>FAKULTAS TEKNIK</h1>
+    </center>
+    <img src= "https://sersasih.files.wordpress.com/2011/06/ft-k-copy.jpg" alt="25%">
+    <h2>Jurusan yang terdapat dalam Fakultas Teknik, terdiri dari:</h2>
+    <p>1. Teknik Mesin</p>
+    <p>2. Teknik ELektro</p>
+    <p>3. Teknik Sipil</p>
+    <p>4. Informatika</p>
+</body>
+</html>
+
+<div class="container">
+    <div class="row">
+        <div class="col=md-12">
+            <h3>
+                FT
+                <a herf="{% url 'tambah_ft' %}">Tambah</a>
+            </h3>
+            {% for message in messages %}
+            {% if message %}
+            <div class="alert alert-success">{{ messagae }}</div>
+            {% endif %}
+            {% endfor%}
+
+            <table class="table table-border table-striped">
+                <thead>
+                    <tr>
+                        <th>JUDUL</th>
+                        <th>JURUSAN</th>
+                        <th>KETUA JURUSAN</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+            <tbody>
+                {% for ft in books %}
+                <tr>
+                    <td><a href=" {% url 'ubah_ft' fh.id %}">{{ ft.judul }}</a></td>
+                    <td>{{ ft.udul }}</td>
+                    <td>{{ ft.jurusan }}</td>
+                    <td>{{ ft.ketua jurusan }}</td>
+                    <td>
+                        <button data-toggle="modal" data-target="#hapus-{{ ft.id }}" class="btn btn-danger">Hapus</button>
+                    </td>
+
+                <div class="modal" id="hapus-{{ ft.id }}">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="modal-title">
+                                    <h3>Hapus</h3>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                Apakah anda yakin ingin menghapus data tersebut? <strong>{{ ft.judul | upper }}</strong>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{% url 'hapus_ft' ft.id %}" class="btn btn-danger">Hapus</a>
+                                <button class="btn btn-dark" data- dismiss="modal">Tidak</button>
+                            </div>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+</tr>
+{% endfor %}
+
+{% endlock %}

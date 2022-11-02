@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>PASCASARJANA</title>
+    <style>
+        body{
+            background-color: #F5C7A9;
+        }
+    
+        img{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 40%;
+        }
+    
+        h1{
+            color: black;
+            text-align: center;
+            font-family: lucida ;
+            font-size: 30px;
+        }
+    
+        h2{
+            background-color: #D1512D;
+            color: black;
+            text-align: center;
+            font-family: lucida;
+            font-size: 25px;
+        }
+    
+        p{
+            color: black;
+            text-align: justify;
+            font-family: times;
+            font-size: 20px;
+        }
+</style>
+</head>
+<body>
+    <center>
+    <h1>PASCASARJANA</h1>
+    </center>
+    <img src= "https://2.bp.blogspot.com/-E9iiKv9pvuQ/VnlsLGwPNpI/AAAAAAAAAEs/vP23R6rgtog/s1600/Logo%2BPASCA%2BUNTIRTA.bmp" alt="25%">
+    <h2>Jurusan yang terdapat dalam Program PascaSarjana, terdiri dari:</h2>
+    <p>1. Pendidikan Bahasa Indonesia</p>
+    <p>2. Teknologi Pendidikan</p>
+    <p>3. Hukum</p>
+    <p>4. Administrasi Publik</p>
+    <p>5. Pendidikan Matematika</p>
+    <p>6. Akuntansi</p>
+    <p>7. Manajemen</p>
+    <p>8. Pendidikan Bahasa Inggris</p>
+    <p>9. Ilmu Pertanian</p>
+    <p>10. Ilmu Komunikasi</p>
+    <p>11. Teknik Kimia</p>
+    <p>12. Pendidikan Dasar</p>
+    <p>13. Ekonomi</p>
+</body>
+</html> 
+
+<div class="container">
+    <div class="row">
+        <div class="col=md-12">
+            <h3>
+                PASCASARJANA
+                <a herf="{% url 'tambah_pasca' %}">Tambah</a>
+            </h3>
+            {% for message in messages %}
+            {% if message %}
+            <div class="alert alert-success">{{ messagae }}</div>
+            {% endif %}
+            {% endfor%}
+
+            <table class="table table-border table-striped">
+                <thead>
+                    <tr>
+                        <th>JUDUL</th>
+                        <th>JURUSAN</th>
+                        <th>KETUA JURUSAN</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+            <tbody>
+                {% for pasca in books %}
+                <tr>
+                    <td><a href=" {% url 'ubah_pasca' fh.id %}">{{ pasca.judul }}</a></td>
+                    <td>{{ pasca.judul }}</td>
+                    <td>{{ pasca.jurusan }}</td>
+                    <td>{{ pasca.ketua jurusan }}</td>
+                    <td>
+                        <button data-toggle="modal" data-target="#hapus-{{ pasca.id }}" class="btn btn-danger">Hapus</button>
+                    </td>
+
+                <div class="modal" id="hapus-{{ pasca.id }}">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="modal-title">
+                                    <h3>Hapus</h3>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                Apakah anda yakin ingin menghapus data tersebut? <strong>{{ pasca.judul | upper }}</strong>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{% url 'hapus_pasca' pasca.id %}" class="btn btn-danger">Hapus</a>
+                                <button class="btn btn-dark" data- dismiss="modal">Tidak</button>
+                            </div>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+</tr>
+{% endfor %}
+
+{% endlock %}

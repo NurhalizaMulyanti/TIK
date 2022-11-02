@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>FAPERTA</title>
+    <style>
+        body{
+            background-color: #B1D7B4;
+        }
+    
+        img{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 40%;
+        }
+    
+        h1{
+            color: black;
+            text-align: center;
+            font-family: lucida ;
+            font-size: 30px;
+        }
+    
+        h2{
+            background-color: #7FB77E;
+            color: black;
+            text-align: center;
+            font-family: lucida;
+            font-size: 25px;
+        }
+    
+        p{
+            color: black;
+            text-align: justify;
+            font-family: times;
+            font-size: 20px;
+        }
+</style>
+</head>
+<body>
+    <center>
+    <h1>FAKULTAS PERTANIAN</h1>
+    </center>
+    <img src= "https://agribisnis.faperta.untirta.ac.id/wp-content/uploads/2019/06/logo.png" alt="35%">
+    <h2>Jurusan yang terdapat dalam Fakultas Pertanian, terdiri dari:</h2>
+    <p>1. Agribisnis</p>
+    <p>2. Agroekoteknologi</p>
+    <p>3. Teknologi Pangan</p>
+    <p>4. Perikanan</p>
+</body>
+</html> 
+
+<div class="container">
+    <div class="row">
+        <div class="col=md-12">
+            <h3>
+                FAPERTA
+                <a herf="{% url 'tambah_faperta' %}">Tambah</a>
+            </h3>
+            {% for message in messages %}
+            {% if message %}
+            <div class="alert alert-success">{{ messagae }}</div>
+            {% endif %}
+            {% endfor%}
+
+            <table class="table table-border table-striped">
+                <thead>
+                    <tr>
+                        <th>JUDUL</th>
+                        <th>JURUSAN</th>
+                        <th>KETUA JURUSAN</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+            <tbody>
+                {% for faperta in books %}
+                <tr>
+                    <td><a href=" {% url 'ubah_faperta' faperta.id %}">{{ faperta.judul }}</a></td>
+                    <td>{{ faperta.judul }}</td>
+                    <td>{{ faperta.jurusan }}</td>
+                    <td>{{ faperta.ketua jurusan }}</td>
+                    <td>
+                        <button data-toggle="modal" data-target="#hapus-{{ faperta.id }}" class="btn btn-danger">Hapus</button>
+                    </td>
+
+                <div class="modal" id="hapus-{{ faperta.id }}">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="modal-title">
+                                    <h3>Hapus</h3>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                Apakah anda yakin ingin menghapus data tersebut? <strong>{{ faperta.judul | upper }}</strong>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{% url 'hapus_faperta' faperta.id %}" class="btn btn-danger">Hapus</a>
+                                <button class="btn btn-dark" data- dismiss="modal">Tidak</button>
+                            </div>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+</tr>
+{% endfor %}
+
+{% endlock %}

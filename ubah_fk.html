@@ -1,0 +1,29 @@
+{% extends 'fk.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="cold-md-4">
+            <h3>Ubah: {{ fk.judul }}</h3>
+
+            {% for message in messages %}
+            {% if message %}
+            <div class="alert alert-success">{{ messagae }}</div>
+            {% endif %}
+            {% endfor%}
+
+            <form action= "/fk/ubah/{{ fk.id }}" method="post">
+            {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button class="btn btn-primary">Simpan</button>
+    <a herf="/fk" class="btn btn-danger">Kembali</a>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
